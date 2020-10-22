@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+FreeDoc - Réserve ton docteur 
 
-Things you may want to cover:
+Projet THP pour pratiquer les BDD relationnelles:
 
-* Ruby version
+* L'app consiste à prendre gérer les RDV médicaux
 
-* System dependencies
+Pour tester la BDD :
 
-* Configuration
+* Cloner le repo
 
-* Database creation
+* bundle install
 
-* Database initialization
+* rails db:migrate
 
-* How to run the test suite
+* rails db:seed
 
-* Services (job queues, cache servers, search engines, etc.)
+* rails c
 
-* Deployment instructions
+* Faire les tests nécessaires (tp Doctor.all, tp Patient.all, tp JoinTableDoctorSpecialty.all...)
 
-* ...
