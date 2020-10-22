@@ -8,26 +8,49 @@
 
 require 'faker'
 
-10.times do
+City.destroy_all
+Doctor.destroy_all
+Patient.destroy_all
+Appointment.destroy_all
+Specialty.destroy_all
+
+30.times do
+  city = City.create!(name: Faker::Address.city)
+end
+
+30.times do
   doctor = Doctor.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     zip_code: Faker::Address.zip_code,
-    specialty: ["Géneraliste", "Cardiologue", "Dermatologue", "Podologue"].sample
+    city_id: City.all.sample.id
   )
 end
 
-10.times do
+Specialty.create!(specialty: "Généraliste")
+Specialty.create!(specialty: "Podologue")
+Specialty.create!(specialty: "Cardiologue")
+Specialty.create!(specialty: "Ophtalmologue")
+Specialty.create!(specialty: "Dermatologue")
+
+30.times do
   patient = Patient.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
+    city_id: City.all.sample.id
   )
 end
 
-10.times do
+30.times do
   appointment = Appointment.create!(
     doctor: Doctor.all.sample,
     patient: Patient.all.sample,
-    date: Faker::Time.between_dates(from: Date.today, to: Date.today + 200, period: :all)
-  )
+    doctor_id: Doctor.all.sample.id,
+    patient_id: Patient.all.sample.id,
+    city_id: City.all.sample.id,
+    date: Faker::Time.between_dates(from: Date.today, to: Date.today + 200, period: :all))
+  end
+
+30.times do
+    join = JoinTableSpecialty.create!(doctor: Doctor.all.select(:id).sample, specialty: Specialty.all.select(:id).sample)
 end
